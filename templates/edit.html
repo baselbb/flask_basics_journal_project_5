@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% from "macros.html" import render_field, field_error %}
+
+{% block title %}{{ super() }} | {{ entry.title }}{% endblock %}
+
+
+{% block content %}
+
+<div class="edit-entry">
+    <h2>Edit Entry</h2>
+
+    <form method="POST" action="" class="form">
+        {{form.hidden_tag()}}
+        {{ render_field(form.title) }}
+
+         <label for="date">Date</label>
+        {{ field_error(form.date) }}
+        <input id="date" type="date" name="date" value="{{ entry.date.strftime('%Y-%m-%d') }}"><br>
+
+        {{ render_field(form.spent) }}
+
+        {{ render_field(form.learned) }}
+
+        {{ render_field(form.resources) }}
+
+        <input type="submit" value="Update Entry" class="button">
+        <a href="{{ url_for('detail', entry_id=entry.id) }}" class="button button-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

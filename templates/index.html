@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ super() }} | Index{% endblock %}
+
+{% block content %}
+
+    <div class="entry-list">
+    {% for entry in entries %}
+        <article>
+            <h2><a href="{{ url_for("detail", entry_id=entry.id) }}">{{ entry.title }}</a></h2>
+            <time datetime="entry.date">{{ entry.date.strftime('%Y-%m-%d') }}</time>
+        </article>
+    {% endfor %}
+    </div>
+
+{% endblock %}
